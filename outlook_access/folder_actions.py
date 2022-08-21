@@ -9,15 +9,13 @@ def select_email_folder(account_name, folder):
     folder_emails = mapi.Folders(account_name).Folders(folder).Items
     return folder_emails
 
-# set filters on folder using kwargs filters and Restrict()
+# set filters on folder using filters list and Restrict()
 def filter_emails(emails, filters): 
     # TODO: Make this prettier!!
     i = 0
     while i < len(filters):
-        print(filters[i])
         emails = emails.Restrict(filters[i])
         i += 1
-
         if i == len(filters):
             message = emails.GetFirst()
             return message.body

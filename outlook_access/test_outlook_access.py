@@ -1,12 +1,13 @@
-# import win32com.client
+import win32com.client
 
 #other libraries to be used in this script
 # import os
 from datetime import datetime, timedelta
 
 # initiate session with Outlook
-# outlook = win32com.client.Dispatch('outlook.application')
-# mapi = outlook.GetNamespace("MAPI")
+outlook = win32com.client.Dispatch('outlook.application')
+mapi = outlook.GetNamespace("MAPI")
+
 
 
 '''

@@ -6,15 +6,24 @@ mapi = outlook.GetNamespace("MAPI")
 
 def select_account():
     print("List of active Outlook accounts: ")
-    # list accounts in Outlook
+    
+    # place all accounts into dictionary
+    account_dict = {}
     i = 0
     for account in mapi.Accounts:
         i += 1
-        print(f"{ i }. { account.DeliveryStore.DisplayName }")
+        account_dict[i] = account.DeliveryStore.DisplayName
 
-    query = input("Please select account: ")
+    # list all accounts for selection by user
+    for index, account_name in account_dict.items():
+        print(f"{ index }. { account_name }")
+
+    # input choice, check valid
+    # TODO: provide escape or previous menu action
+    choice = int(input(f"Select account: "))
+    if choice not in account_dict:
+        print(f"{ choice } not valid.")
+        select_account()
     
-    if query != i or query > i:
-
-
-select_account()
+    # return str of account choice
+    return account_dict[choice]
